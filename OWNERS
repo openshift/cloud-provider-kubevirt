@@ -1,12 +1,18 @@
 reviewers:
   - nirarg
   - davidvossel
+  - nunnatsa
+  - orenc1
   - rhrazdil
   - qinqon
 approvers:
   - nirarg
+  - nunnatsa
+  - orenc1
   - davidvossel
   - rhrazdil
   - qinqon
+emeritus_approvers:
+  - mfranczy
 
 component: "Cloud Compute / Cloud Controller Manager"

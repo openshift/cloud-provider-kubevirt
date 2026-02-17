@@ -23,6 +23,8 @@ package main
 import (
 	"os"
 
+	"kubevirt.io/cloud-provider-kubevirt/pkg/controller/kubevirteps"
+
 	"k8s.io/apimachinery/pkg/util/wait"
 	cloudprovider "k8s.io/cloud-provider"
 	"k8s.io/cloud-provider/app"
@@ -46,7 +48,12 @@ func main() {
 	fss := cliflag.NamedFlagSets{}
 	controllerInitializers := app.DefaultInitFuncConstructors
 
-	command := app.NewCloudControllerManagerCommand(ccmOptions, cloudInitializer, controllerInitializers, fss, wait.NeverStop)
+	// add kubevirt-cloud-controller to the list of controllers
+	controllerInitializers[kubevirteps.ControllerName.String()] = app.ControllerInitFuncConstructor{
+		Constructor: StartKubevirtCloudControllerWrapper,
+	}
+
+	command := app.NewCloudControllerManagerCommand(ccmOptions, cloudInitializer, controllerInitializers, map[string]string{}, fss, wait.NeverStop)
 	code := cli.Run(command)
 	os.Exit(code)
 }

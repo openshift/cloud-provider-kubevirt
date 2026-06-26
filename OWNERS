@@ -15,4 +15,4 @@ approvers:
 emeritus_approvers:
   - mfranczy
 
-component: "Cloud Compute / Cloud Controller Manager"
+component: "Cloud Compute / KubeVirt Provider"

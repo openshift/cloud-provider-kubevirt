@@ -10,4 +10,4 @@ approvers:
   - qinqon
 
 component: "Cloud Compute"
-subcomponent: "Cloud Controller Manager"
+subcomponent: "KubeVirt Provider"
